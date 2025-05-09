@@ -5,7 +5,7 @@ export default function SignInPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center flex-col md:flex-row bg-[url(/bg2.png)] bg-cover bg-center relative z-10">
-      <div className="absolute inset-0 bg-black/10 z-0">
+      <div className="absolute inset-0 bg-black/20 z-0">
 
       </div>
       {/* Image container with fixed height and width */}
