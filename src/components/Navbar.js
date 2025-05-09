@@ -10,6 +10,22 @@ import { usePathname } from 'next/navigation';
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+    const [hideTimeout, setHideTimeout] = useState(null);
+
+    const handleMouseEnter = () => {
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
+            setHideTimeout(null);
+        }
+        setProfileDropdownOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        const timeout = setTimeout(() => {
+            setProfileDropdownOpen(false);
+        }, 200); // small delay (ms) to allow user to move into dropdown
+        setHideTimeout(timeout);
+    };
     const dropdownRef = useRef(null);
 
     const pathname = usePathname();
@@ -59,12 +75,12 @@ export default function Navbar() {
                                 <div
                                     className="relative z-40"
                                     ref={dropdownRef}
-                                    onMouseLeave={() => setProfileDropdownOpen(false)}
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
                                 >
                                     <button
                                         className="flex items-center justify-center h-10 w-10 rounded-full bg-[#333] hover:bg-[#444] focus:outline-none"
                                         onClick={() => setProfileDropdownOpen((prev) => !prev)}
-                                        onMouseEnter={() => setProfileDropdownOpen(true)}
                                         aria-haspopup="true"
                                         aria-expanded={profileDropdownOpen}
                                     >
