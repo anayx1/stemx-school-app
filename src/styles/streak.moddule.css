@@ -1,0 +1,100 @@
+.streak-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.streak-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.streak-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--success);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.streak-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.streak-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.streak-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--neutral-900);
+}
+
+.streak-stat-label {
+  font-size: 0.75rem;
+  color: var(--neutral-600);
+}
+
+.streak-calendar {
+  background-color: var(--neutral-100);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.streak-days-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.streak-days-label span {
+  font-size: 0.75rem;
+  color: var(--neutral-600);
+  width: 24px;
+  text-align: center;
+}
+
+.streak-days-dots {
+  display: flex;
+  justify-content: space-between;
+}
+
+.streak-day-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--neutral-300);
+}
+
+.streak-day-dot.active {
+  background-color: var(--success);
+}
+
+.streak-motivation {
+  text-align: center;
+}
+
+.streak-message {
+  font-size: 0.875rem;
+  color: var(--neutral-700);
+}
