@@ -46,8 +46,8 @@ export const Login = () => {
             <div className="w-full flex items-center justify-center">
                 <Image
                     src="/logo.png"
-                    width={70}
-                    height={70}
+                    width={700}
+                    height={700}
                     alt="logo"
                     style={{ width: 'auto', height: '70px' }}
                 />
