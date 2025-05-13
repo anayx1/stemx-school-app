@@ -6,6 +6,7 @@ import LearningStreakCard from '@/components/dashboard/LearningStreakCard';
 import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import AchievementSection from '@/components/dashboard/AchievementSection';
 import ReportsSection from '@/components/dashboard/ReportsSection';
+import Greeting from './Greeting';
 
 const page = () => {
     const data = recentActivityData;
@@ -14,12 +15,13 @@ const page = () => {
         <>
             <main className='w-full flex justify-center items-center bg-gray-100 pb-5'>
                 <section className='w-[95%] md-[w-90%] lg-[w-90%] justify-center items-center mt-5'>
-                    <div className="flex justify-between items-center mb-6">
+                    {/* <div className="flex justify-between items-center mb-6">
                         <div className="text-3xl font-semibold">
                             <h1>Good afternoon, Alex!</h1>
                             <p className="text-sm text-gray-600">Ready to continue your learning journey?</p>
                         </div>
-                    </div>
+                    </div> */}
+                    <Greeting />
                     <ContinueLearning data={recentActivityData} />
                     <section className='flex mt-5 justify-between flex-wrap'>
                         <div className='lg:w-2/3 w-full py-7'>
