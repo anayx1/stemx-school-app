@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Bookmark, ChevronDown } from 'lucide-react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Link from "next/link"
 
 export default function ChaptersAccordion({ chapters }) {
     const [expandedChapters, setExpandedChapters] = useState([chapters[0]?.id || ""])
@@ -52,6 +53,7 @@ export default function ChaptersAccordion({ chapters }) {
                         </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-6 pb-6 pt-2">
+                        <Link href={'/courses/photosynthesis-basics'}>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {chapter.topics.map((topic) => (
                                 <div
@@ -120,6 +122,7 @@ export default function ChaptersAccordion({ chapters }) {
                                 </div>
                             ))}
                         </div>
+                        </Link>
                     </AccordionContent>
                 </AccordionItem>
             ))}

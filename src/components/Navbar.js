@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, User, LogOut, BookOpen, Award } from "lucide-react";
 import { usePathname } from 'next/navigation';
+import FullscreenButton from "./WindowMax";
 
 
 export default function Navbar() {
@@ -52,11 +53,11 @@ export default function Navbar() {
         <>
             {!hideNavbar &&
                 <div className="bg-gradient2 text-white shadow-md">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between h-16 items-center">
                             {/* Logo - Left Side */}
                             <div className="flex-shrink-0 flex items-center">
-                                <Link href="/" className="flex items-center">
+                                <Link href="/dashboard/" className="flex items-center">
                                     <Image src="/logo-only.png" alt="Logo" width={50} height={50} />
                                     {/* <span className="ml-2 text-xl font-semibold">C2I</span> */}
                                 </Link>
@@ -67,9 +68,8 @@ export default function Navbar() {
                                 <Link href="/courses" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors">
                                     My Courses
                                 </Link>
-                                <Link href="/learning" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors">
-                                    My Learning
-                                </Link>
+                                <Link href="/quizzes" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors">
+                                    My Quizzes                                </Link>
 
                                 {/* Profile Dropdown */}
                                 <div
@@ -115,6 +115,8 @@ export default function Navbar() {
 
                                     )}
                                 </div>
+                                <FullscreenButton />
+
                             </div>
 
                             {/* Mobile Menu Button */}
@@ -154,9 +156,9 @@ export default function Navbar() {
                                         <BookOpen className="h-5 w-5 mr-3" />
                                         My Courses
                                     </Link>
-                                    <Link href="/learning" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors flex items-center">
+                                    <Link href="//quizzes" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors flex items-center">
                                         <BookOpen className="h-5 w-5 mr-3" />
-                                        My Learning
+                                        My Quizzes
                                     </Link>
                                     <Link href="/profile" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors flex items-center">
                                         <User className="h-5 w-5 mr-3" />
@@ -166,10 +168,7 @@ export default function Navbar() {
                                         <Award className="h-5 w-5 mr-3" />
                                         My Results
                                     </Link>
-                                    <Link href="/interests" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors flex items-center">
-                                        <BookOpen className="h-5 w-5 mr-3" />
-                                        My Interests
-                                    </Link>
+
                                     <button className="w-full text-left px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors flex items-center text-red-400">
                                         <LogOut className="h-5 w-5 mr-3" />
                                         Logout
