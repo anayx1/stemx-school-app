@@ -5,7 +5,7 @@ const subjectsData = [
     {
         id: "1",
         subject: "Maths",
-        icon: "https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/chem.png',
         progress: 60,
         nextTopic: "Quadratic Equations",
         teacher: "Mrs. Johnson",
@@ -14,7 +14,7 @@ const subjectsData = [
     {
         id: "2",
         subject: "Physics",
-        icon: "https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/phy.png',
         progress: 45,
         nextTopic: "Newton's Laws of Motion",
         teacher: "Mr. Richards",
@@ -23,7 +23,7 @@ const subjectsData = [
     {
         id: "3",
         subject: "SST",
-        icon: "https://images.pexels.com/photos/2393789/pexels-photo-2393789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/bio.png',
         progress: 78,
         nextTopic: "French Revolution",
         teacher: "Ms. Peters",
@@ -32,7 +32,7 @@ const subjectsData = [
     {
         id: "4",
         subject: "Science",
-        icon: "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/phy.png',
         progress: 32,
         nextTopic: "Cell Structure",
         teacher: "Dr. Williams",
@@ -41,7 +41,7 @@ const subjectsData = [
     {
         id: "5",
         subject: "English",
-        icon: "https://images.pexels.com/photos/1448709/pexels-photo-1448709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/bio.png',
         progress: 65,
         nextTopic: "Shakespeare's Hamlet",
         teacher: "Mrs. Thompson",
@@ -50,7 +50,7 @@ const subjectsData = [
     {
         id: "6",
         subject: "Chemistry",
-        icon: "https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/chem.png',
         progress: 51,
         nextTopic: "Periodic Table",
         teacher: "Mrs. Davis",
@@ -59,7 +59,7 @@ const subjectsData = [
     {
         id: "7",
         subject: "Computer Science",
-        icon: "https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/phy.png',
         progress: 88,
         nextTopic: "Algorithms",
         teacher: "Mr. Anderson",
@@ -68,7 +68,7 @@ const subjectsData = [
     {
         id: "8",
         subject: "Arts",
-        icon: "https://images.pexels.com/photos/374054/pexels-photo-374054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        icon: '/subject/subject/chem.png',
         progress: 75,
         nextTopic: "Renaissance Art",
         teacher: "Ms. Garcia",
@@ -105,17 +105,17 @@ function SubjectCard({ subject }) {
     const offset = circumference - (progress / 100) * circumference;
 
     return (
-        <div className=" bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 p-10 flex flex-col items-center">
-            <div className="w-20 h-20 rounded-full overflow-hidden mb-1">
+        <div className=" bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 p-2 flex flex-col items-center">
+            <div className="w-full h-full overflow-hidden mb-1">
                 <img
                     src={icon || "/placeholder.svg"}
                     alt={name}
                     width={80}
                     height={80}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full rounded-md "
                 />
             </div>
-            <h3 className="text-lg font-medium text-gray-800">{name}</h3>
+            {/* <h3 className="text-lg font-medium text-gray-800">{name}</h3> */}
             <div className="relative w-24 h-24">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r={radius} fill="none" stroke="#E5E7EB" strokeWidth="8" />
@@ -139,3 +139,46 @@ function SubjectCard({ subject }) {
         </div>
     );
 }
+
+// import Image from 'next/image'
+
+// const cards = [
+//     {
+//         id: 1,
+//         name: 'Physics',
+//         src: '/subject/subject/phy.png',
+//     },
+//     {
+//         id: 2,
+//         name: 'Biology',
+//         src: '/subject/subject/chem.png',
+//     },
+//     {
+//         id: 3,
+//         name: 'Chemistry',
+//         src: '/subject/subject/bio.png',
+//     },
+//     //   {
+//     //     id: 4,
+//     //     name: 'Maths',
+//     //     src: '/subject/subject/phy.png',
+//     //   },
+// ]
+
+// export default function SubjectsDashboard() {
+//     return (
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+//             {cards.map(card => (
+//                 <div key={card.id} className="rounded-lg overflow-hidden shadow-lg">
+//                     <Image
+//                         src={card.src}
+//                         alt={card.name}
+//                         width={500}  // adjust width as needed
+//                         height={300} // adjust height as needed
+//                         className="w-full h-auto object-cover rounded-xl"
+//                     />
+//                 </div>
+//             ))}
+//         </div>
+//     )
+// }
