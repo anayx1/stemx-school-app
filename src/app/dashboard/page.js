@@ -7,6 +7,7 @@ import PerformanceChart from '@/components/dashboard/PerformanceChart';
 import AchievementSection from '@/components/dashboard/AchievementSection';
 import ReportsSection from '@/components/dashboard/ReportsSection';
 import Greeting from './Greeting';
+import BlogSection from '@/components/blogs/Blogs';
 
 const page = () => {
     const data = recentActivityData;
@@ -37,6 +38,9 @@ const page = () => {
                     </section>
                     <section className='mt-5'>
                         <AchievementSection achievements={achievementsData} />
+                    </section>
+                    <section>
+                        <BlogSection />
                     </section>
                 </section>
             </main>
