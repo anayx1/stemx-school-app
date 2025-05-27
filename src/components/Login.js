@@ -45,11 +45,11 @@ export const Login = () => {
         <div className="w-full max-w-md space-y-6 bg-[#1c1c1c] p-4 md:p-8 rounded-lg z-40">
             <div className="w-full flex items-center justify-center">
                 <Image
-                    src="/logo.png"
+                    src="/111.png"
                     width={70}
                     height={700}
                     alt="logo"
-                    style={{ width: 'auto', height: '70px' }}
+                    style={{ width: 'auto', height: '80px' }}
                 />
             </div>
 
