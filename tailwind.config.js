@@ -63,7 +63,7 @@ module.exports = {
 				gradient: 'bg-gradient-to-r from-blue-50 to-blue-200',
 				gradient: 'linear-gradient(to right, #38bdf8, #4f46e5)',
 				gradient2: 'linear-gradient(to left, #164863, #427d9d)',
-				gradient3: 'linear-gradient(to left, #60a5fa, #3b82f6)',
+				gradient3: 'linear-gradient(to bottom, #164863, #427d9d)',
 
 				// gradient4: 'linear-gradient(to left, #60a5fa, #3b82f6)'
 			},

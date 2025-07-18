@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, User, LogOut, BookOpen, Award } from "lucide-react";
 import { usePathname } from 'next/navigation';
-import FullscreenButton from "./WindowMax";
 
 
 export default function Navbar() {
@@ -65,11 +64,11 @@ export default function Navbar() {
 
                             {/* Desktop Navigation */}
                             <div className="hidden md:flex lg:flex items-center space-x-4">
-                                <Link href="/courses" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors">
+                                {/* <Link href="/courses" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors">
                                     My Courses
-                                </Link>
-                                <Link href="/quizzes" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors">
-                                    My Quizzes                                </Link>
+                                </Link> */}
+                                {/* <Link href="/quizzes" className="px-3 py-2 rounded-md hover:bg-[#3a3a3a] transition-colors">
+                                    My Quizzes                                </Link> */}
 
                                 {/* Profile Dropdown */}
                                 <div
@@ -115,7 +114,7 @@ export default function Navbar() {
 
                                     )}
                                 </div>
-                                <FullscreenButton />
+
 
                             </div>
 

@@ -7,6 +7,8 @@ import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { signIn } from "next-auth/react"
+import Cookies from "js-cookie"
 
 export const Login = () => {
     const [email, setEmail] = useState("")
@@ -20,22 +22,26 @@ export const Login = () => {
         setIsLoading(true)
 
         try {
-            const response = await fetch("/api/auth/sign-in", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
+            const result = await signIn("credentials", {
+                redirect: false,
+                email,
+                password,
+                role: 'school',
             })
 
-            if (response.ok) {
-                router.push("/dashboard")
+            if (result?.ok) {
+                const { getSession } = await import("next-auth/react")
+                const session = await getSession()
+
+                // Store token in cookie
+                if (session?.authToken) {
+                    Cookies.set('auth-token', session.authToken, { expires: 7 })
+                } router.push("/dashboard")
             } else {
-                // Handle error
-                console.error("Sign in failed")
+                console.error("Login failed:", result?.error || "Invalid credentials")
             }
         } catch (error) {
-            console.error("An error occurred:", error)
+            console.error("Unexpected error:", error)
         } finally {
             setIsLoading(false)
         }
@@ -49,11 +55,13 @@ export const Login = () => {
                     width={70}
                     height={700}
                     alt="logo"
-                    style={{ width: 'auto', height: '80px' }}
+                    style={{ width: "auto", height: "80px" }}
                 />
             </div>
 
-            <h1 className="text-2xl font-bold text-white text-center">Sign in to your account</h1>
+            <h1 className="text-2xl font-bold text-white text-center">
+                Sign in to your account
+            </h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                     <label htmlFor="email" className="text-sm text-gray-300">
@@ -75,7 +83,10 @@ export const Login = () => {
                         <label htmlFor="password" className="text-sm text-gray-300">
                             Password
                         </label>
-                        <Link href="/forgot-password" className="text-sm text-gray-300 hover:text-white">
+                        <Link
+                            href="/forgot-password"
+                            className="text-sm text-gray-300 hover:text-white"
+                        >
                             Forgot password?
                         </Link>
                     </div>
@@ -96,11 +107,19 @@ export const Login = () => {
                             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
                             aria-label={showPassword ? "Hide password" : "Show password"}
                         >
-                            {showPassword ? <EyeOffIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
+                            {showPassword ? (
+                                <EyeOffIcon className="h-5 w-5" />
+                            ) : (
+                                <EyeIcon className="h-5 w-5" />
+                            )}
                         </button>
                     </div>
                 </div>
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
+                <Button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary/90"
+                    disabled={isLoading}
+                >
                     {isLoading ? "Signing in..." : "Sign in"}
                 </Button>
             </form>
