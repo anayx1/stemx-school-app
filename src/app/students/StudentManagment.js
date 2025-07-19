@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -24,118 +24,23 @@ import {
 import { useRouter } from "next/navigation"
 import AddStudentModal from "./addStudentModal"
 import DeleteConfirmationModal from "./DeleteModal"
+import { deleteStudent } from "@/lib/actions"
 
-// Sample students data
-const studentsData = [
-    {
-        id: "STU001",
-        name: "Alex Johnson",
-        email: "alex.johnson@email.com",
-        grade: "Grade 10",
-        class: "10-A",
-        status: "Active",
-        lastLogin: "2024-01-15",
-        phone: "+1 234-567-8901",
-        gpa: "3.8",
-        attendance: "95%",
-        fees: "$1,200",
-    },
-    {
-        id: "STU002",
-        name: "Emma Thompson",
-        email: "emma.thompson@email.com",
-        grade: "Grade 11",
-        class: "11-B",
-        status: "Active",
-        lastLogin: "2024-01-14",
-        phone: "+1 234-567-8902",
-        gpa: "3.9",
-        attendance: "98%",
-        fees: "$1,200",
-    },
-    {
-        id: "STU003",
-        name: "Sarah Williams",
-        email: "sarah.williams@email.com",
-        grade: "Grade 9",
-        class: "9-C",
-        status: "Inactive",
-        lastLogin: "2024-01-10",
-        phone: "+1 234-567-8903",
-        gpa: "3.2",
-        attendance: "78%",
-        fees: "$0",
-    },
-    {
-        id: "STU004",
-        name: "David Miller",
-        email: "david.miller@email.com",
-        grade: "Grade 12",
-        class: "12-A",
-        status: "Active",
-        lastLogin: "2024-01-16",
-        phone: "+1 234-567-8904",
-        gpa: "3.7",
-        attendance: "92%",
-        fees: "$1,200",
-    },
-    {
-        id: "STU005",
-        name: "Jessica Garcia",
-        email: "jessica.garcia@email.com",
-        grade: "Grade 10",
-        class: "10-B",
-        status: "Pending",
-        lastLogin: "2024-01-13",
-        phone: "+1 234-567-8905",
-        gpa: "3.5",
-        attendance: "88%",
-        fees: "$600",
-    },
-    {
-        id: "STU006",
-        name: "Michael Brown",
-        email: "michael.brown@email.com",
-        grade: "Grade 9",
-        class: "9-A",
-        status: "Active",
-        lastLogin: "2024-01-12",
-        phone: "+1 234-567-8906",
-        gpa: "3.6",
-        attendance: "94%",
-        fees: "$1,200",
-    },
-    {
-        id: "STU007",
-        name: "Ashley Davis",
-        email: "ashley.davis@email.com",
-        grade: "Grade 11",
-        class: "11-C",
-        status: "Rejected",
-        lastLogin: "2024-01-08",
-        phone: "+1 234-567-8907",
-        gpa: "2.8",
-        attendance: "65%",
-        fees: "$0",
-    },
-    {
-        id: "STU008",
-        name: "Christopher Wilson",
-        email: "christopher.wilson@email.com",
-        grade: "Grade 12",
-        class: "12-B",
-        status: "Active",
-        lastLogin: "2024-01-17",
-        phone: "+1 234-567-8908",
-        gpa: "3.9",
-        attendance: "96%",
-        fees: "$1,200",
-    },
-]
-
-export default function StudentManagement() {
+export default function StudentManagement({ students: initialStudents = [] }) {
     const router = useRouter()
-    const [students, setStudents] = useState(studentsData)
+
+    
+    const flattenedStudents = initialStudents.map(student => ({
+        id: student.id,
+        name: student.user?.full_name || 'N/A',
+        email: student.user?.email || 'N/A',
+        roll_number: student.roll_number,
+        class: student.class, 
+        gpa: student.gpa, 
+        
+    }));
+
+    const [students, setStudents] = useState(flattenedStudents)
     const [search, setSearch] = useState("")
     const [classFilter, setClassFilter] = useState("all")
     const [currentPage, setCurrentPage] = useState(1)
@@ -143,6 +48,17 @@ export default function StudentManagement() {
     const [deleteModal, setDeleteModal] = useState({ isOpen: false, student: null })
     const [selectedStudents, setSelectedStudents] = useState([])
     const itemsPerPage = 10
+
+    useEffect(() => {
+        setStudents(initialStudents.map(student => ({
+            id: student.id,
+            name: student.user?.full_name || 'N/A',
+            email: student.user?.email || 'N/A',
+            roll_number: student.roll_number,
+            class: student.class, 
+            gpa: student.gpa, 
+        })))
+    }, [initialStudents])
 
     // Calculate stats
     const stats = {
@@ -153,17 +69,17 @@ export default function StudentManagement() {
         rejected: students.filter((s) => s.status === "Rejected").length,
     }
 
-    // Get unique classes for filter
-    const uniqueClasses = [...new Set(students.map((s) => s.class))].sort()
 
-    // Filter students based on search and class
+    const uniqueClasses = [...new Set(students.map((s) => s.class).filter(Boolean))].sort()
+
+
     const filteredStudents = students.filter((student) => {
         const matchesSearch =
-            student.name.toLowerCase().includes(search.toLowerCase()) ||
-            student.email.toLowerCase().includes(search.toLowerCase()) ||
-            student.id.toLowerCase().includes(search.toLowerCase())
+            (student.name || "").toLowerCase().includes(search.toLowerCase()) ||
+            (student.email || "").toLowerCase().includes(search.toLowerCase()) ||
+            (student.id || "").toString().toLowerCase().includes(search.toLowerCase())
 
-        const matchesClass = classFilter === "all" || student.class === classFilter
+        const matchesClass = classFilter === "all" || (student.class && student.class === classFilter)
 
         return matchesSearch && matchesClass
     })
@@ -175,9 +91,7 @@ export default function StudentManagement() {
     const currentStudents = filteredStudents.slice(startIndex, endIndex)
 
     const handleAddStudent = (newStudent) => {
-        const studentId = `STU${String(students.length + 1).padStart(3, "0")}`
-        const studentWithId = { ...newStudent, id: studentId, gpa: "3.0", attendance: "90%", fees: "$1,200" }
-        setStudents([...students, studentWithId])
+        router.refresh();
         setIsAddModalOpen(false)
     }
 
@@ -185,9 +99,15 @@ export default function StudentManagement() {
         setDeleteModal({ isOpen: true, student })
     }
 
-    const confirmDelete = () => {
-        setStudents(students.filter((s) => s.id !== deleteModal.student.id))
-        setDeleteModal({ isOpen: false, student: null })
+    const confirmDelete = async () => {
+        try {
+            await deleteStudent(deleteModal.student.id)
+            setStudents(students.filter((s) => s.id !== deleteModal.student.id))
+            setDeleteModal({ isOpen: false, student: null })
+        } catch (error) {
+            console.error(error)
+            alert('Failed to delete student')
+        }
     }
 
     const handleSelectStudent = (studentId, checked) => {
@@ -362,17 +282,17 @@ export default function StudentManagement() {
                                                 onCheckedChange={(checked) => handleSelectStudent(student.id, checked)}
                                             />
                                         </TableCell>
-                                        <TableCell className="font-medium text-blue-600">#{student.id.slice(-3)}</TableCell>
+                                        <TableCell className="font-medium text-blue-600">#{String(student.id).slice(-3)}</TableCell>
                                         <TableCell className="font-medium">{student.name}</TableCell>
                                         <TableCell className="text-gray-600">{student.email}</TableCell>
                                         {/* <TableCell>
                                             <StatusBadge status={student.status} />
                                         </TableCell> */}
-                                        <TableCell className="font-medium">{student.gpa}</TableCell>
+                                        <TableCell className="font-medium">4.5</TableCell>
                                         {/* <TableCell>{student.attendance}</TableCell> */}
                                         {/* <TableCell className="font-medium">{student.fees}</TableCell> */}
                                         <TableCell>
-                                            <Badge variant="outline">{student.class}</Badge>
+                                            <Badge variant="outline">9-B</Badge>
                                         </TableCell>
                                         <TableCell>
                                             <div className="flex items-center justify-center space-x-2">
