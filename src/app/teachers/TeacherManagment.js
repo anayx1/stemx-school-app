@@ -24,7 +24,7 @@ import {
 import { useRouter } from "next/navigation"
 import AddTeacherModal from "./addTeacherModal"
 import DeleteConfirmationModal from "./DeleteModal"
-import { deleteTeacher } from "@/lib/Teacher/action"
+import { deleteTeacher } from "@/lib/teachers/actions"
 
 export default function TeacherManagement({ teachers = [], error = null }) {
     const router = useRouter()

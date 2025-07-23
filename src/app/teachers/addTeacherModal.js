@@ -16,7 +16,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { X, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { createTeacher } from "@/lib/Teacher/action"
+import { createTeacher } from "@/lib/teachers/actions"
 
 export default function AddTeacherModal({ isOpen, onClose }) {
     const router = useRouter()
