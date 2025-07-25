@@ -13,6 +13,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import AddSubjectAssignmentModal from "./AddSubjectModal"
 import DeleteConfirmationModal from "../students/DeleteModal"
 import EditClassModal from "./EditClassModal"
+import CreateClassModal from "./CreateClassModal"
 
 // Sample classes data
 const classesData = [
@@ -136,7 +137,12 @@ export default function ClassManagement() {
     const [deleteModal, setDeleteModal] = useState({ isOpen: false, assignment: null, classId: null })
     const [isEditClassModalOpen, setIsEditClassModalOpen] = useState(false)
     const [selectedClassForEdit, setSelectedClassForEdit] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const handleSuccess = (data) => {
+        console.log("Class created successfully:", data)
+        // Handle success (e.g., refresh data, show notification, etc.)
+    }
     // Calculate stats
     const stats = {
         totalClasses: classes.length,
@@ -305,6 +311,11 @@ export default function ClassManagement() {
                                     ))}
                                 </SelectContent>
                             </Select>
+
+                            <Button onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto">
+                                Create New Class
+                            </Button>
+
                         </div>
                     </div>
 
@@ -465,6 +476,7 @@ export default function ClassManagement() {
                 classData={selectedClassForEdit}
                 availableTeachers={availableTeachers}
             />
+            <CreateClassModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSuccess={handleSuccess} />
         </div>
     )
 }

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Stemx - School",
+  title: "Brainex - School",
   description: "LMS",
 };
 

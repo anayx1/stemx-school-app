@@ -5,7 +5,7 @@ const Footer = () => {
         <>
             <div className='text-center text-sm'>
                 Powered by <span className='text-primary'>
-                    Stemx
+                    brainex
                 </span>
             </div>
         </>)

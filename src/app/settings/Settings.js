@@ -51,8 +51,8 @@ export default function SettingsManagement() {
                 <AlertDescription className="text-red-600 pl-0 m-0 flex justify-start items-center gap-2">
                     <Info className="h-4 w-auto text-red-600" />
                     <strong>Need to change your school name or logo?</strong> Please contact our admin support team at{" "}
-                    <a href="mailto:stemxlabs.com" className="font-medium underline hover:no-underline">
-                        stemxlabs.com
+                    <a href="mailto:brainexlabs.com" className="font-medium underline hover:no-underline">
+                        brainexlabs.com
                     </a>{" "}
                     for assistance with these changes.
                 </AlertDescription>
@@ -178,8 +178,8 @@ export default function SettingsManagement() {
                                 <Mail className="h-4 w-4" />
                                 <AlertDescription>
                                     To update your school logo, please contact our admin support team at{" "}
-                                    <a href="mailto:stemxlabs.com" className="font-medium text-blue-600 hover:underline">
-                                        stemxlabs.com
+                                    <a href="mailto:brainexlabs.com" className="font-medium text-blue-600 hover:underline">
+                                        brainexlabs.com
                                     </a>
                                 </AlertDescription>
                             </Alert>
@@ -205,8 +205,8 @@ export default function SettingsManagement() {
                         </p>
                         <div className="flex items-center gap-2 text-sm">
                             <strong>Email Support:</strong>
-                            <a href="mailto:stemxlabs.com" className="text-blue-600 hover:underline font-medium">
-                                stemxlabs.com
+                            <a href="mailto:brainexlabs.com" className="text-blue-600 hover:underline font-medium">
+                                brainexlabs.com
                             </a>
                         </div>
                         <p className="text-xs text-gray-500">

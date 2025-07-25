@@ -107,7 +107,7 @@
   }
 
   h4 {
-    @apply text-xl md:text-2xl lg:text-3xl font-medium leading-snug;
+    @apply text-xl md:text-xl lg:text-xl font-medium leading-snug;
   }
 
   h5 {
@@ -119,7 +119,7 @@
   }
 
   p {
-    @apply text-base md:text-lg lg:text-xl leading-relaxed text-muted-foreground;
+    @apply text-base md:text-lg lg:text-lg leading-relaxed text-muted-foreground;
   }
 }
 
