@@ -261,7 +261,11 @@ export default function TeacherManagement({ teachers = [], error = null }) {
                                                 />
                                             </TableCell>
                                             <TableCell className="font-medium text-blue-600">#{teacher.id}</TableCell>
-                                            <TableCell className="font-medium">{teacher.full_name}</TableCell>
+                                            <TableCell className="font-medium">
+                                                <a href={`/teachers/${teacher.id}`} className="hover:underline">
+                                                    {teacher.full_name}
+                                                </a>
+                                            </TableCell>
                                             <TableCell className="text-gray-600">{teacher.email}</TableCell>
                                             <TableCell>
                                                 <Badge variant="outline">{teacher.subject_specialization || "N/A"}</Badge>
