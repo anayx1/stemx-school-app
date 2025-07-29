@@ -14,7 +14,7 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog"
 import { AlertCircle, CheckCircle } from "lucide-react"
-import { updateClass } from "@/lib/classes/action"
+import { updateClass } from "@/lib/classes/data"
 
 const grades = ["Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"]
 const sections = ["A", "B", "C", "D", "E"]
