@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
 import { useState, useRef } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function EditStudentForm({ student, handleAction }) {
-    const [previewUrl, setPreviewUrl] = useState(student.profile_picture || "")
+export default function EditTeacherForm({ teacher, handleAction }) {
+    const [previewUrl, setPreviewUrl] = useState(teacher.profile_picture || "")
     const fileInputRef = useRef(null)
 
     const handleFileChange = (e) => {
@@ -21,7 +21,7 @@ export default function EditStudentForm({ student, handleAction }) {
         <div className="max-w-4xl mx-auto p-8">
             <Card>
                 <CardHeader>
-                    <CardTitle>Edit Student: {student.full_name}</CardTitle>
+                    <CardTitle>Edit Teacher: {teacher.full_name}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form action={handleAction} className="space-y-6">
@@ -50,72 +50,48 @@ export default function EditStudentForm({ student, handleAction }) {
                             >
                                 Upload New Picture
                             </Button>
-                            <input type="hidden" name="profile_picture" defaultValue={student.profile_picture || ""} />
+                            <input type="hidden" name="profile_picture" defaultValue={teacher.profile_picture || ""} />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t">
                             <div>
                                 <label className="block mb-1 font-medium">ID</label>
-                                <Input name="id" defaultValue={student.id} readOnly />
-                            </div>
-                            <div>
-                                <label className="block mb-1 font-medium">Roll Number</label>
-                                <Input name="roll_number" defaultValue={student.roll_number} readOnly />
+                                <Input name="id" defaultValue={teacher.id} readOnly />
                             </div>
                             <div>
                                 <label className="block mb-1 font-medium">Name</label>
-                                <Input name="name" defaultValue={student.full_name || ''} />
+                                <Input name="full_name" defaultValue={teacher.full_name || ''} readOnly />
                             </div>
                             <div>
                                 <label className="block mb-1 font-medium">Email</label>
-                                <Input name="email" defaultValue={student.email || ''} />
+                                <Input name="email" defaultValue={teacher.email || ''} readOnly />
                             </div>
                             <div>
-                                <label className="block mb-1 font-medium">Grade</label>
-                                <Input name="grade" defaultValue={student.grade || '9'} />
+                                <label className="block mb-1 font-medium">Phone Number</label>
+                                <Input name="phone_number" defaultValue={teacher.phone_number || ''} />
                             </div>
                             <div>
-                                <label className="block mb-1 font-medium">Class</label>
-                                <Input name="class" defaultValue={student.class || '9-B'} />
+                                <label className="block mb-1 font-medium">Qualification</label>
+                                <Input name="qualification" defaultValue={teacher.qualification || ''} />
                             </div>
                             <div>
-                                <label className="block mb-1 font-medium">Status</label>
-                                <Input name="status" defaultValue={student.status || ''} />
+                                <label className="block mb-1 font-medium">Gender</label>
+                                <Input name="gender" defaultValue={teacher.gender || ''} readOnly />
                             </div>
                             <div>
                                 <label className="block mb-1 font-medium">Date of Birth</label>
                                 <Input
                                     type="date"
                                     name="date_of_birth"
-                                    defaultValue={student.date_of_birth ? new Date(student.date_of_birth).toISOString().split('T')[0] : ''}
+                                    defaultValue={teacher.date_of_birth ? new Date(teacher.date_of_birth).toISOString().split('T')[0] : ''}
                                 />
                             </div>
                             <div>
-                                <label className="block mb-1 font-medium">Admission Date</label>
-                                <Input
-                                    type="date"
-                                    name="admission_date"
-                                    defaultValue={student.admission_date ? new Date(student.admission_date).toISOString().split('T')[0] : ''}
-                                />
+                                <label className="block mb-1 font-medium">Experience (Years)</label>
+                                <Input name="experience_years" defaultValue={teacher.experience_years || ''} />
                             </div>
                             <div>
-                                <label className="block mb-1 font-medium">Phone</label>
-                                <Input name="phone" defaultValue={student.contact_number || ''} />
-                            </div>
-                            <div>
-                                <label className="block mb-1 font-medium">GPA</label>
-                                <Input name="gpa" defaultValue={student.gpa || '4.5'} readOnly />
-                            </div>
-                            <div>
-                                <label className="block mb-1 font-medium">Attendance</label>
-                                <Input name="attendance" defaultValue={student.attendance || ''} />
-                            </div>
-                            <div>
-                                <label className="block mb-1 font-medium">Fees</label>
-                                <Input name="fees" defaultValue={student.fees || ''} readOnly />
-                            </div>
-                             <div>
-                                <label className="block mb-1 font-medium">Last Login</label>
-                                <Input name="lastLogin" defaultValue={student.lastLogin || ''} readOnly />
+                                <label className="block mb-1 font-medium">Subject Specialization</label>
+                                <Input name="subject_specialization" defaultValue={teacher.subject_specialization || ''} />
                             </div>
                         </div>
                         <div>
@@ -123,7 +99,7 @@ export default function EditStudentForm({ student, handleAction }) {
                             <Input
                                 type="text"
                                 name="address"
-                                defaultValue={student.address || ''}
+                                defaultValue={teacher.address || ''}
                             />
                         </div>
                         
