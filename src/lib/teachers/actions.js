@@ -73,7 +73,24 @@ async function deleteTeacher(id) {
         console.error("Failed to delete teacher. Status:", res.status, "Body:", errorBody);
         throw new Error(`Failed to delete teacher: ${res.statusText} (${res.status})`);
     }
-    redirect("/teachers");
 }
 
-export { getTeacher, updateTeacher, getTeachers, deleteTeacher };
+async function createTeacher(teacherData) {
+    const res = await fetch(`${process.env.BACKEND_URL}/teachers/create-teacher/1/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(teacherData),
+        cache: "no-store",
+    });
+
+    if (!res.ok) {
+        const errorBody = await res.text();
+        console.error("Failed to create teacher. Status:", res.status, "Body:", errorBody);
+        throw new Error(`Failed to create teacher: ${res.statusText} (${res.status})`);
+    }
+    return await res.json();
+}
+
+export { getTeacher, updateTeacher, getTeachers, deleteTeacher, createTeacher };
