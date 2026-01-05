@@ -11,15 +11,12 @@ export async function GET(req, { params }) {
 
 export async function PUT(req, { params }) {
     const { id } = params;
-    const body = await req.json();
+    const formData = await req.formData();
 
 
-    const res = await fetch(`${process.env.BACKEND_URL}/student/${id}`/ {
+    const res = await fetch(`${process.env.BACKEND_URL}/students/profile/${id}/`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
+        body: formData,
     });
 
     const result = await res.json();

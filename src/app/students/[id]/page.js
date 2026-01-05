@@ -19,10 +19,12 @@ export default async function EditStudentPage({ params }) {
         const file = formData.get("profile_picture_file");
         const dob = formData.get("date_of_birth");
         const admissionDate = formData.get("admission_date");
+        const studentClass = formData.get("class");
 
         const data = new FormData();
         data.append("contact_number", formData.get("phone"));
         data.append("address", formData.get("address"));
+        data.append("class", studentClass);
 
         if (dob) {
             data.append("date_of_birth", dob);

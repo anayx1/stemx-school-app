@@ -69,13 +69,10 @@ export default function EditStudentForm({ student, handleAction }) {
                                 <label className="block mb-1 font-medium">Email</label>
                                 <Input name="email" defaultValue={student.email || ''} />
                             </div>
-                            <div>
-                                <label className="block mb-1 font-medium">Grade</label>
-                                <Input name="grade" defaultValue={student.grade || '9'} />
-                            </div>
+                            
                             <div>
                                 <label className="block mb-1 font-medium">Class</label>
-                                <Input name="class" defaultValue={student.class || '9-B'} />
+                                <Input name="class" defaultValue={student.class || ''} />
                             </div>
                             <div>
                                 <label className="block mb-1 font-medium">Status</label>
@@ -101,14 +98,8 @@ export default function EditStudentForm({ student, handleAction }) {
                                 <label className="block mb-1 font-medium">Phone</label>
                                 <Input name="phone" defaultValue={student.contact_number || ''} />
                             </div>
-                            <div>
-                                <label className="block mb-1 font-medium">GPA</label>
-                                <Input name="gpa" defaultValue={student.gpa || '4.5'} readOnly />
-                            </div>
-                            <div>
-                                <label className="block mb-1 font-medium">Attendance</label>
-                                <Input name="attendance" defaultValue={student.attendance || ''} />
-                            </div>
+                            
+                            
                             <div>
                                 <label className="block mb-1 font-medium">Fees</label>
                                 <Input name="fees" defaultValue={student.fees || ''} readOnly />

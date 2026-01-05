@@ -288,11 +288,11 @@ export default function StudentManagement({ students: initialStudents = [] }) {
                                         {/* <TableCell>
                                             <StatusBadge status={student.status} />
                                         </TableCell> */}
-                                        <TableCell className="font-medium">4.5</TableCell>
+                                        <TableCell className="font-medium">{student.gpa}</TableCell>
                                         {/* <TableCell>{student.attendance}</TableCell> */}
                                         {/* <TableCell className="font-medium">{student.fees}</TableCell> */}
                                         <TableCell>
-                                            <Badge variant="outline">9-B</Badge>
+                                            <Badge variant="outline">{student.class}</Badge>
                                         </TableCell>
                                         <TableCell>
                                             <div className="flex items-center justify-center space-x-2">
